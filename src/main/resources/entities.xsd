@@ -1,0 +1,38 @@
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:tns="http://spring.io/guides/gs-producing-web-service"
+           targetNamespace="http://spring.io/guides/gs-producing-web-service" elementFormDefault="qualified">
+
+    <xs:element name="request">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="fio" type="xs:string"/>
+                <xs:element name="age" type="xs:string"/>
+                <xs:element name="passport" type="xs:string"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="response">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="status" type="tns:status"/>
+                <xs:element name="stopList" type="tns:stopListItem" maxOccurs="unbounded" />
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:complexType name="stopListItem">
+        <xs:sequence>
+            <xs:element name="id" type="xs:string"/>
+            <xs:element name="date" type="xs:string"/>
+            <xs:element name="period" type="xs:string"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:simpleType name="status">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="OK"/>
+            <xs:enumeration value="MAYBE"/>
+            <xs:enumeration value="EVIL"/>
+        </xs:restriction>
+    </xs:simpleType>
+</xs:schema>
